@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "GymPark Fitness",
+    "slug": "gympark-fitness",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "android": {
+      "package": "com.ntsixofficial.gymparkfitness",
+      "adaptiveIcon": {
+        "backgroundColor": "#cc0000"
+      },
+      "permissions": []
+    },
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id-here"
+      }
+    }
+  }
+}
