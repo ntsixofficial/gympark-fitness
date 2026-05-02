@@ -30,6 +30,8 @@ export default function WebViewScreen() {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#000" barStyle="light-content" />
+
+      {/* Top Bar */}
       <View style={styles.topBar}>
         <View style={styles.topBarLeft}>
           <View style={styles.logoCircle}>
@@ -47,6 +49,7 @@ export default function WebViewScreen() {
         )}
       </View>
 
+      {/* WebView */}
       <WebView
         ref={webviewRef}
         source={{ uri: GYMPARK_URL }}
@@ -56,16 +59,31 @@ export default function WebViewScreen() {
         onNavigationStateChange={(state) => setCanGoBack(state.canGoBack)}
         javaScriptEnabled={true}
         domStorageEnabled={true}
-        startInLoadingState={true}
-        scalesPageToFit={true}
+        thirdPartyCookiesEnabled={true}
+        sharedCookiesEnabled={true}
+        originWhitelist={['*']}
+        allowsInlineMediaPlayback={true}
         allowsFullscreenVideo={true}
+        mediaPlaybackRequiresUserAction={false}
+        onShouldStartLoadWithRequest={(request) => {
+          return true;
+        }}
         renderLoading={() => (
           <View style={styles.loadingContainer}>
             <ActivityIndicator size="large" color="#ff3232" />
             <Text style={styles.loadingText}>Loading GymPark...</Text>
           </View>
         )}
+        startInLoadingState={true}
       />
+
+      {/* Loading overlay */}
+      {loading && (
+        <View style={styles.loadingOverlay}>
+          <ActivityIndicator size="large" color="#ff3232" />
+          <Text style={styles.loadingText}>Loading GymPark...</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -81,20 +99,31 @@ const styles = StyleSheet.create({
   topBarLeft: { flexDirection: "row", alignItems: "center", gap: 10 },
   logoCircle: {
     width: 32, height: 32, borderRadius: 16,
-    backgroundColor: "#cc0000", alignItems: "center", justifyContent: "center",
+    backgroundColor: "#cc0000",
+    alignItems: "center", justifyContent: "center",
   },
   logoIcon: { fontSize: 16 },
-  topBarTitle: { color: "#fff", fontSize: 14, fontWeight: "800", letterSpacing: 2 },
+  topBarTitle: {
+    color: "#fff", fontSize: 14,
+    fontWeight: "800", letterSpacing: 2,
+  },
   backBtn: {
     paddingHorizontal: 12, paddingVertical: 6,
     backgroundColor: "rgba(255,50,50,0.15)",
-    borderRadius: 8, borderWidth: 1, borderColor: "rgba(255,50,50,0.3)",
+    borderRadius: 8, borderWidth: 1,
+    borderColor: "rgba(255,50,50,0.3)",
   },
   backBtnText: { color: "#ff3232", fontSize: 13, fontWeight: "600" },
   webview: { flex: 1 },
   loadingContainer: {
     position: "absolute", top: 0, left: 0, right: 0, bottom: 0,
-    backgroundColor: "#000", alignItems: "center", justifyContent: "center", gap: 16,
+    backgroundColor: "#000",
+    alignItems: "center", justifyContent: "center", gap: 16,
+  },
+  loadingOverlay: {
+    position: "absolute", top: 56, left: 0, right: 0, bottom: 0,
+    backgroundColor: "#000",
+    alignItems: "center", justifyContent: "center", gap: 16,
   },
   loadingText: { color: "rgba(255,255,255,0.5)", fontSize: 14 },
 });
