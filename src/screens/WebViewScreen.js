@@ -6,7 +6,7 @@ import {
 import { WebView } from "react-native-webview";
 import { useFocusEffect } from "@react-navigation/native";
 
-const GYMPARK_URL = "https://gympark-pj-222-member-portal-242506455852.asia-southeast1.run.app/";
+const GYMPARK_URL = "https://gympark-fitness-242506455852.asia-southeast1.run.app/";
 
 export default function WebViewScreen() {
   const webviewRef = useRef(null);
