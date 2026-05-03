@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
+    "icon": "./assets/icon.png",
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#000000"
@@ -12,7 +13,8 @@
     "android": {
       "package": "com.ntsixofficial.gymparkfitness",
       "adaptiveIcon": {
-        "backgroundColor": "#cc0000"
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#050505"
       },
       "permissions": []
     },
